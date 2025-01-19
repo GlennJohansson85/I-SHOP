@@ -1,8 +1,7 @@
 import os
-import dj_database_url
-
-from django.contrib.messages import constants as messages
 from pathlib import Path
+from django.contrib.messages import constants as messages
+import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
@@ -16,7 +15,7 @@ DEBUG = True
 
 ROOT_URLCONF = 'pp5shop.urls'
 WSGI_APPLICATION = 'pp5shop.wsgi.application'
-# AUTH_USER_MODEL = 'accounts.Profile'
+AUTH_USER_MODEL = 'accounts.Account'
 
 # CSRF_TRUSTED_ORIGINS = ['']
 
@@ -63,7 +62,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'accounts.context_processors.profile_context',
             ],
         },
     },
@@ -72,17 +70,18 @@ TEMPLATES = [
 
 MESSAGE_TAGS = {messages.ERROR: 'danger'}
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#if 'DATABASE_URL' in os.environ:
+#    DATABASES = {
+#        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#    }
+#else:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -105,11 +104,9 @@ USE_TZ = True
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+STATICFILES_DIRS = [BASE_DIR / "static"]
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS S3 configuration for production
@@ -125,5 +122,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 
-#    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 #    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

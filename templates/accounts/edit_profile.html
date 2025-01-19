@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+    <section class="content-down">
+        {% include 'includes/alerts.html' %}
+        <div class="container">
+            <div class="row">
+                {% include 'includes/dashboard_sidebar.html' %}
+                <main class="col-md-9">
+                    <article class="card">
+                        <header class="card-header-2">Edit Profile:
+                            <span>{{ user.full_name }}</span>
+                        </header>
+                        <div class="card-body">
+                            <form
+                            class="edit-form"
+                            action="{% url 'edit_profile' %}"
+                            method="POST"
+                            enctype="multipart/form-data"
+                            >
+                                {% csrf_token %}
+
+                                <!-- Profile Picture -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                    {% if userprofile.profile_picture %}
+                                        <img
+                                        src="{{ userprofile.profile_picture.url }}"
+                                        alt="Profile Picture"
+                                        width="150"
+                                        >
+                                    {% else %}
+                                        <img
+                                        src="{% static 'images/misc/default_profile.png' %}"
+                                        alt="Default Profile Picture"
+                                        width="150"
+                                        >
+                                    {% endif %}
+                                    </div>
+                                </div>
+
+                                <!-- Upload Profile Picture -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="id_profile_picture">Picture:</label>
+                                        {{ profile_form.profile_picture }}
+                                    </div>
+                                </div>
+
+                                <!-- First & Last Name -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="id_first_name">First Name:</label>
+                                        {{ user_form.first_name }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_last_name">Last Name:</label>
+                                        {{ user_form.last_name }}
+                                    </div>
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="id_phone_number">Phone number:</label>
+                                        {{ user_form.phone_number }}
+                                    </div>
+                                </div>
+
+                                <!-- Address 1 & 2 -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="id_address_line_1">Address 1:</label>
+                                        {{ profile_form.address_line_1 }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_address_line_2">Address 2:</label>
+                                        {{ profile_form.address_line_2 }}
+                                    </div>
+                                </div>
+
+                                <!-- City & Country -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="id_city">City:</label>
+                                        {{ profile_form.city }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_country">Country:</label>
+                                        {{ profile_form.country }}
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <div class="btn-container">
+                                            <input type="submit" value="Update" class="btn">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </article>
+                </main>
+            </div>
+        </div>
+    </section>
+{% endblock %}

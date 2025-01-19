@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+    <section class="content-down">
+        <div class="card-width-400">
+            <article class="card-body">
+                {% include 'includes/alerts.html' %}
+                <div class="header-1">Register Form!</div>
+                <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+
+                    <!-- First & Last Name -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>First Name:</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="col form-group">
+                            <label>Last Name:</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+
+                    <!-- Email & Phone -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Email:</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="col form-group">
+                            <label>Phone Number:</label>
+                            {{ form.phone_number }}
+                        </div>
+                    </div>
+
+                    <!-- Create & Confirm Password -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Create a Password:</label>
+                            {{ form.password }}
+                        </div>
+                        <div class="col form-group">
+                            <label>Confirm the Password:</label>
+                            {{ form.confirm_password }}
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <div class="btn-container">
+                                <button type="submit" class="btn"> Submit </button>
+                            </div>
+                            <br>
+                            {{ form.email.errors }}
+                            {{ form.non_field_errors }}
+                        </div>
+                    </div>
+                </form>
+            </article>
+        </div>
+        <p class="no_account">Have an account?</p>
+        <p class="signin">
+            <a class="btn" href="{% url 'signin' %}">Sign in Here!</a>
+        </p>
+    </section>
+{% endblock %}

@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Place Order {% endblock %}
+
+{% block content %}
+	<section class="content-down">
+		<div class="container">
+
+			<!-- Review and Place order -->
+			<h4 class="header-1">Review and Place order</h4>
+			<div class="row">
+				<aside class="col-lg-8">
+
+					<!-- Billing Address -->
+					<div class="card">
+						<header class="card-header">Billing Address:</header>
+						<div class="card-body">
+							<div class="card-text">{{order.full_name}}</div>
+							<div class="card-text">{{order.full_address}}</div>
+							<div class="card-text">{{order.city}}</div>
+							<div class="card-text">{{order.country}}</div>
+							<div class="card-text">{{order.email}}</div>
+							<div class="card-text">{{order.phone}}</div>
+							{% if order.order_note %}
+								<b>Note:</b> {{order.order_note }}
+							{% endif %}
+						</div>
+					</div>
+
+					<!-- Payment Method -->
+					<div class="card">
+						<div class="card-header">Payment Method:</div>
+						<div class="card-body">
+							<p class="card-text">PayPal</p>
+						</div>
+					</div>
+
+					<!-- Cart Items -->
+					<div class="card">
+						<!-- Cart Items - Card Header -->
+						<h6 class="card-header">Cart:</h6>
+						<div class="card-body">
+							<table class="table table-borderless">
+								<!-- Cart Items - Items Header -->
+								<thead>
+									<tr>
+										<th
+											class="cart-header"
+											scope="col" width="200">Product:
+										</th>
+	                                	<th
+											class="cart-header"
+											scope="col"width="110">Quantity:
+										</th>
+	                                	<th
+											class="cart-header"
+											scope="col"width="110">Price
+										</th>
+									</tr>
+								</thead>
+
+								<tbody class="cart-body">
+									{% for cart_item in cart_items %}
+									<tr>
+										<td>
+											<figure class="cart-item">
+												<div class="aside">
+													<img
+														src="{{ cart_item.product.images.url }}"
+														class="cart-img"
+													>
+												<figcaption class="info">
+													<a
+														href="{{ cart_item.product.get_url }}"
+														class="cart-info-link">
+														{{ cart_item.product.product_name }}
+													</a>
+													<p>
+														{% if cart_item.variations.all %}
+															{% for item in cart_item.variations.all %}
+																{{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+															{% endfor %}
+														{% endif %}
+													</p>
+												</figcaption>
+											</figure>
+										</td>
+										<td class="payments-quantity">
+											<label for="">{{cart_item.quantity}}</label>
+										</td>
+										<td>
+											<div class="text-center">
+												<var
+													class="cart-price">
+													$ {{ cart_item.sub_total }}
+												</var>
+												<small
+													class="text small">
+													$ {{ cart_item.product.price }} each
+												</small>
+											</div>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</aside>
+
+				<aside class="col-lg-4">
+					<div class="card">
+						<div class="card-body">
+							<dl class="dlist-align">
+								<dt>Total price:</dt>
+								<dd class="text-right"> ${{total}}</dd>
+							</dl>
+							<dl class="dlist-align">
+								<dt>Tax:</dt>
+								<dd class="text-right"> ${{tax}}</dd>
+							</dl>
+							<dl class="dlist-align">
+								<dt>Grand Total:</dt>
+								<dd class="text-right text-dark b">
+									<strong> ${{grand_total}}</strong>
+								</dd>
+							</dl>
+							<hr>
+							<p class="text-center mb-3">
+								<img
+									src="{% static './images/misc/payments.png' %}"
+									height="26"
+								>
+							</p>
+							<div id="paypal-button-container"></div>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
+	<script>
+	// Function to get the CSRF token
+	function getCookie(name) {
+	    let cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+	        const cookies = document.cookie.split(';');
+	        for (let i = 0; i < cookies.length; i++) {
+	            const cookie = cookies[i].trim();
+	            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	}
+
+	const amount = "{{ grand_total }}";
+	const url = "{% url 'payments' %}";  // The URL to your 'payments' view
+	const csrftoken = getCookie('csrftoken');
+	const orderID = "{{ order.order_number }}";  // Order ID passed from the server
+	const payment_method = 'PayPal';
+	const redirect_url = "{% url 'order_complete' %}";  // Redirect URL after successful payment
+
+	// Dynamically load PayPal SDK script
+	const script = document.createElement('script');
+	script.nonce = "dOX9770FWaq+1HxsKNK2EPCZs7mqdqA12aVMEYy0Z2t8sa/q";
+	script.src = 'https://www.paypal.com/sdk/js?client-id=Aa9IcE7Akf3trTY8fVc6bcrzs9S19BDEpMGG_p_0D1uxqj_ksDIXkTU9YO1eHxZQLysTrtwpC_t3HdBa&components=buttons&currency=USD';
+	document.head.appendChild(script);
+
+	script.onload = function() {
+	    // After the script is loaded, render the PayPal button
+	    paypal.Buttons({
+	        style: {
+	            color: 'blue',
+	            shape: 'rect',
+	            label: 'pay',
+	            height: 40
+	        },
+	        createOrder: function(data, actions) {
+	            return actions.order.create({
+	                purchase_units: [{
+	                    amount: {
+	                        value: amount  // The amount passed to PayPal
+	                    }
+	                }]
+	            });
+	        },
+	        onApprove: function(data, actions) {
+	            return actions.order.capture().then(function(details) {
+	                console.log(details);
+	                sendData(details);  // Send the details object to your server
+	            });
+	        }
+	    }).render('#paypal-button-container');
+	};
+
+	// Function to send payment details to your backend
+	function sendData(details) {
+	    fetch(url, {
+	        method: "POST",
+	        headers: {
+	            "Content-type": "application/json",
+	            "X-CSRFToken": csrftoken,
+	        },
+	        body: JSON.stringify({
+	            orderID: orderID,  // Order ID from the server
+	            transID: details.id,  // PayPal transaction ID
+	            payment_method: payment_method,
+	            status: details.status,  // PayPal payment status
+	        }),
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        // Redirect to order complete page with order number and transaction ID
+	        window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;
+	    })
+	    .catch(error => {
+	        console.error("Error:", error);
+	    });
+	}
+	</script>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Checkout {% endblock %}
+
+{% block content %}
+    <section class="content-down">
+        <div class="checkout-container">
+            <h4 class="header-1">Billing Address</h4>
+            <form action="{% url 'place_order' %}" method="POST">
+                {% csrf_token %}
+
+                    <!-- First & Last Name -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first_name">First Name:</label>
+                            <input
+                                type="text"
+                                id="first_name"
+                                name="first_name"
+                                class="form-control"
+                                autocomplete="given-name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name:</label>
+                            <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                class="form-control"
+                                autocomplete="family-name"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Email & Phone -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input
+                                type="text"
+                                id="phone"
+                                name="phone"
+                                class="form-control"
+                                autocomplete="tel"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Address Line 1 & 2 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="address_line_1">Address 1:</label>
+                            <input
+                                type="text"
+                                id="address_line_1"
+                                name="address_line_1"
+                                class="form-control"
+                                autocomplete="address-line1"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="address_line_2">Address 2 (Optional):</label>
+                            <input
+                                type="text"
+                                id="address_line_2"
+                                name="address_line_2"
+                                class="form-control"
+                                autocomplete="address-line2"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- City & Country -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                class="form-control"
+                                autocomplete="address-level2"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country:</label>
+                            <input
+                                type="text"
+                                id="country"
+                                name="country"
+                                class="form-control"
+                                autocomplete="country"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Order Note -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order_note">Order Note:</label>
+                            <input
+                                type="text"
+                                id="order_note"
+                                name="order_note"
+                                class="form-control"
+                                autocomplete="off"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <div class="btn-container">
+                                <button
+                                    type="submit"
+                                    name="submit"
+                                    class="btn">Place Order
+                                </button>
+                                <a
+                                    href="{% url 'products' %}"
+                                    class="btn">Continue Shopping
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

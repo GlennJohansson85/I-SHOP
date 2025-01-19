@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} My Orders {% endblock %}
+
+{% block content %}
+    <section class="content-down">
+        {% include 'includes/alerts.html' %}
+        <div class="container">
+            <div class="row">
+                {% include 'includes/dashboard_sidebar.html' %}
+                <main class="col-md-9">
+                    <article class="card">
+                        <header class="card-header-2">Order History:
+                            <span>{{user.full_name}}</span>
+                        </header>
+
+                        <!-- Order History Table -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="my-header" scope="col">Order #</th>
+                                                <th class="my-header" "col">Billing Name:</th>
+                                                <th class="my-header" "col">Phone Number:</th>
+                                                <th class="my-header" "col">Order Total:</th>
+                                                <th class="my-header" "col">Date:</th>
+                                            </tr>
+                                        </thead>
+                                        {% if orders %}
+                                            <tbody>
+                                            {% for order in orders %}
+                                                <tr>
+                                                    <th scope="row">
+                                                        <a href="{% url 'order_detail' order.order_number %}">
+                                                            {{order.order_number}}
+                                                        </a>
+                                                    </th>
+                                                    <td>{{order.full_name}}</td>
+                                                    <td>{{order.phone}}</td>
+                                                    <td>${{order.order_total}}</td>
+                                                    <td>{{order.created_at}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                         {% else %}
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="5">No orders found</td>
+                                                </tr>
+                                            </tbody>
+                                        {% endif %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            </div>
+        </div>
+    </section>
+{% endblock %}

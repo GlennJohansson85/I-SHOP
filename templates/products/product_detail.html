@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Product Details {% endblock %}
+
+{% block content %}
+    <section class="content-down">
+         <div class="detail-container">
+            <div class="row">
+
+                <!-- Image Section -->
+                <div class="col-md-6 mb-5">
+                    <div class="detail-img-container">
+                        <img src="{{ single_product.images.url }}" alt="Product Image" class="detail-img">
+                    </div>
+                </div>
+
+                <!-- Product Details Section -->
+                <div class="col-md-6 mb-5">
+                    <div class="detail-form-container">
+                        <form action="{% url 'add_cart' single_product.id %}" method="POST">
+                            {% csrf_token %}
+                            <article>
+                                <div class="header-1">{{ single_product.product_name }}</div>
+                                <var class="detail-form-price">$ {{ single_product.price }}</var>
+                                <div class="detail-form-text-container">
+                                    <div class="detail-form-text">{{ single_product.description }}</div>
+                                </div>
+
+                                <!-- Color Select -->
+                                <div class="detail-form-group-container">Choose Color:
+                                    <select name="color" class="detail-form-select form-control" required>
+                                        <option value="" disabled selected>Select</option>
+                                        {% for variation in single_product.variation_set.colors %}
+                                            <option value="{{ variation.variation_value }}">
+                                                {{ variation.variation_value }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <!-- Size Select -->
+                                <div class="detail-form-group-container">Select Size:
+                                    <select name="size" class="detail-form-select form-control">
+                                        <option value="" disabled selected>Select</option>
+                                        {% for variation in single_product.variation_set.sizes %}
+                                            <option value="{{ variation.variation_value }}">
+                                                {{ variation.variation_value }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <!-- Stock and Add to Cart -->
+                                {% if single_product.stock <= 0 %}
+                                    <h5 class="text-danger">Out of Stock</h5>
+                                {% else %}
+                                    <button type="submit" class="btn">
+                                        <span class="text">Add to cart</span>
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                {% endif %}
+                            </article>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section>
+       <div class="detail-container">
+            <div class="row">
+            <header class="detail-review-header">Customer Reviews</header>
+
+                <!-- Mark Review -->
+                <div class="col-md-6 mb-5">
+                    <div class="detail-review-container">
+                        <div class="detail-img-container">
+                            <img class="detail-review-img" src="{% static 'images/avatars/avatar1.png' %}" alt="Reviewer Avatar">
+                        </div>
+                        <div class="detail-review-content">
+                            <p class="detail-review-text">Mark Johnson</p>
+                            <p class="detail-review-text">11.05.2020</p>
+                            <p class="detail-review-text">
+                                <i>
+                                    Great Service, Great Clothes, and Great Prices! I´ll buy everything from I SHOP from now on!!!
+                                </i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jane Review -->
+                <div class="col-md-6 mb-5">
+                    <div class="detail-review-container">
+                        <div class="detail-img-container">
+                            <img class="detail-review-img" src="{% static 'images/avatars/avatar2.png' %}" alt="Reviewer Avatar">
+                        </div>
+                        <div class="detail-review-content">
+                            <p class="detail-review-text">Jane Doe</p>
+                            <p class="detail-review-text">15.07.2021</p>
+                            <p class="detail-review-text">
+                                <i>
+                                    Absolutely love the product! Excellent quality and very fast shipping.
+                                </i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

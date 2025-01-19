@@ -1,0 +1,975 @@
+@font-face {
+    font-family: "Cormorant-Bold";
+    src: url('/static/fonts/Cormorant-Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: "Cormorant-Medium";
+    src: url('/static/fonts/Cormorant-Medium.otf') format('opentype');
+}
+@font-face {
+    font-family: "Cormorant-Regular";
+    src: url('/static/fonts/Cormorant-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "CormorantSC-Bold";
+    src: url('/static/fonts/CormorantSC-Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: "CormorantSC-Medium";
+    src: url('/static/fonts/CormorantSC-Medium.otf') format('opentype');
+}
+@font-face {
+    font-family: "CormorantSC-Semi";
+    src: url('/static/fonts/CormorantSC-Semi.otf') format('opentype');
+}
+
+
+
+/*                                                                              NEW */
+html {
+    height: 100%;
+    margin: 0;
+    background-image: url("/static/images/dark_mosaic.png");
+    background-repeat: repeat;
+}
+
+
+body {
+    min-height: 100vh;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    background-image: url("/static/images/items/whitediamond.png");
+    background-size: 20px;
+    background-color: #000;
+    background-blend-mode: hard-light;
+    box-shadow:
+        inset -1px 2px 2px rgb(74, 74, 74),
+        inset 1px 2px 2px rgba(74, 74, 74);
+}
+
+
+/* Page Content Setting */
+.content-down {
+    margin-top: 80px;
+}
+
+
+/* Card */
+.card {
+    background-color: transparent;
+    border:none;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 1px #4445447f;
+}
+
+.card-body {
+    background-color: #30303137;
+    border-radius: 5px;
+    border-color: transparent;
+    box-shadow: 2px 2px 1px #4445447f;
+}
+
+/* Header */
+.header-1 {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    text-shadow: 2px 2px 1px #4445447f;
+}
+
+.card-header {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    background-color: #d58db0dd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    text-shadow: 1px 1px 1px #4445447f;
+}
+
+.card-header-2 {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    background-color: #d58db0dd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 20px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    text-shadow: 1px 1px 1px #4445447f;
+}
+
+/* Column */
+.col-md-3 {
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    transition: transform 0.2s ease;
+}
+
+.col-md-6 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Grid System */
+.product-row {
+    display: flex;
+    flex-wrap:  wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-product-grid {
+    padding: 0; /* Ensures padding is set to 0 */
+    overflow: hidden; /* Ensures content inside the card does not overflow */
+    background-size: contain; /* Ensures the background image covers the entire card */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-image: url("/static/images/items/blblb.png");
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.291);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-position: center; /* Ensures the image is centered */
+    display: flex;  /* Ensures that elements inside the card are properly aligned */
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    height: 100%; /* Ensures the card takes full height */
+    object-fit: cover;
+}
+
+
+.card-product-grid:hover {
+    transform:  scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.frame {
+    margin: 100px 45px;
+}
+
+/* Image Setting */
+/* Image Setting */
+.img-wrap {
+    padding: 0;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1/1; /* Ensures consistent aspect ratio */
+}
+
+.img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container fully */
+    object-position: center; /* Ensures the image is centered */
+    transition: transform 0.3s ease;
+}
+
+.info-wrap {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    text-align: center;
+}
+
+
+/* Form */
+.form-group {
+    margin: 10px;
+    color: #000;
+}
+
+.form-control {
+    color: #000;
+    font-size: 14px;
+}
+
+input.form-control {
+    font-size: 14px;
+}
+
+/* Table */
+table {
+    table-layout: auto;
+    width: 100%;
+}
+
+/* Buttons */
+.btn-container {
+    margin-top: 20px;
+}
+
+.btn {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    border: 2px solid #000;
+    border-radius: 5px;
+    color: #000;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.291);
+    transition: all 0.1s ease-in-out;
+}
+
+.btn:hover {
+    color: #004078;
+    background-color: #db9cbb;
+    border: 2px solid #004078;
+    box-shadow: none;
+}
+
+.btn-small {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-size: 12px;
+    padding: 3px;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius: 5px;
+    color: #000;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.291);
+}
+
+.btn-small:hover {
+    color: #004078;
+    background-color: #db9cbb;
+    border: 2px solid #004078;
+    box-shadow: none;
+}
+
+/* Pagination */
+.pagination {
+    justify-content: center;
+}
+
+/* Pagination - Item */
+.pagination a {
+    color: #000;
+    background-color: transparent;
+    border: 1px outset #000;
+    box-shadow: 1px 2px 1px #4445447f;
+}
+
+/* Pagination - Item - Effect */
+.pagination a:active,
+.pagination a:focus,
+.pagination a:hover {
+    background-color: #db9cbb;
+    color: #004078;
+    box-shadow: 1px 1px 1px #4445447f;
+}
+
+/* Home.html - Specific Styles */
+.home-intro {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-size: 86px;
+    text-align: center;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.291);
+    margin-bottom: 20px;
+    color: #000;
+}
+
+
+
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Product Title - Container */
+.home-product-title {
+    padding: 0;
+    margin:0;
+    display: block;
+    color: #333;
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+/* Product Title - Effect */
+.home-product-title:hover {
+    text-decoration: none;
+    color: #004078;
+}
+
+.home-product-price {
+    padding: 0;
+    margin:0;
+    color:#27a05d;
+    text-shadow: 1px 1px 1px #000;
+}
+
+/* Products.html - Specific Styles */
+.list-menu {
+  list-style: none;
+  text-align: right;
+}
+
+/* Clothing Category Item */
+.filter-group a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Clothing Category Item: Hover */
+.list-menu a:hover {
+    color: #004078;
+}
+
+/* Dashboard_sidebar.html - Specific Styles */
+/* Item Container */
+.list-group {
+    border: none;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.291);
+}
+
+/* Item */
+.list-group-item {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    color: #000;
+    border: none;
+    background-color: #ffc3e0be;
+}
+
+/* Item - Effect */
+.list-group-item:hover {
+    color: #004078;
+    background-color: #db9cbb;
+}
+
+/* Item - Active State */
+.list-group-item.active {
+    color: #004078;
+    background-color: #db9cbb;
+}
+
+/* Top Item */
+.list-group-item:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* Bottom Item */
+.list-group-item:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Sign Out - Container */
+.sidebar-btn-container {
+    margin: 20px 0;
+}
+
+/* Sign Out - Icon */
+.icon-control {
+  margin-top: 5px;
+  float: right;
+  font-size: 80%;
+}
+
+/* Product_detail.html - Specific Styles */
+.detail-img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.detail-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* detail-form */
+.detail-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+}
+
+.detail-form-header {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-size: 32px;
+}
+
+.detail-form-price {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-size: 26px;
+    color:#1c7e48;
+}
+
+.detail-form-text-container {
+    margin: 20px 0;
+}
+
+.detail-form-select {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+/* detail-review */
+.detail-review-header {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    text-shadow: 2px 2px 1px #4445447f;
+    text-align: center;
+    border-bottom:1px solid #4445447f;
+}
+
+.detail-review-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.detail-review-text {
+    margin: 0px;
+    padding: 2px;
+}
+
+.detail-review-img {
+    width: 150px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+/* Dashboard.html - Specific Styles */
+/* Profile Image */
+.dash-img {
+    width: 150px;
+    height: auto;
+    border: transparent;
+}
+
+/* Increase black for default Text */
+.dash-text {
+    color:#000;
+}
+
+/* Email Text below Profile Image */
+.dash-email {
+    margin-top: 10px;
+}
+
+/* My_Orders.html - Header */
+.my-header {
+    color: #000;
+    font-weight: 500;
+}
+
+/* Edit_Profile.html - Form */
+.edit-form {
+    padding: 0 40px;
+    color: #000;
+}
+
+/* Change_Password.html, Register.html - Specific Styles */
+.change-form {
+    padding: 0 40px;
+    color: #000;
+}
+
+.card-width-400 {
+    max-width: 400px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Cart.html - Specific Styles */
+
+.cart-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-card {
+    padding: 10px;
+    border-color: transparent;
+    background-color: #30303137;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.291);
+}
+
+/* Product, Quantity, Price */
+.cart-header {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Clothing Item */
+.cart-item {
+    text-align: center;
+}
+
+/* Product name, color, size */
+.cart-info {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #000;
+}
+
+/* Product Name - Link to Product Detail */
+.cart-info-link {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
+/* Product name - Effect */
+.cart-info-link:hover {
+    color: #004078;
+    border-bottom: 1px solid #004078;
+}
+
+/* Add/Remove Item */
+.cart-btn-plus,
+.cart-btn-minus {
+    text-align: center;
+    padding: 5px;
+    border: none;
+    color: #000;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Remove Item - Effect */
+.cart-btn-minus:hover {
+    color: rgb(156, 2, 2);
+    transform: scale(1.2);
+}
+
+/* Add Item - Effect */
+.cart-btn-plus:hover {
+    color:#1c7e48;
+    transform: scale(1.2);
+}
+
+/* Product Image in Cart */
+.cart-img {
+    width: 150px;
+    height: auto;
+}
+
+/* Cart Text */
+.cart-price {
+    font-size: 14px;
+    font-weight: 600;
+    color:#1c7e48;
+    text-align: left;
+}
+
+.cart-price-small {
+    color: #000;
+}
+
+.cart-total {
+    color:#1c7e48;
+    font-weight: bold;
+}
+
+/* Container for Checkout & Continue Shopping Buttons */
+.cart-link-container {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Checkout & Continue Shopping Buttons */
+.cart-link {
+    padding: 2px;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius: 5px;
+    color: #000;
+    color: #000;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.291);
+}
+
+/* Checkout & Continue Shopping Button - Effect */
+.cart-link:hover {
+    color: #004078;
+    border: 2px solid #004078;
+    background-color: #db9cbb;
+    box-shadow: none;
+}
+
+/* Payments.html - Specific Styles */
+.payments-header-container {
+    margin-bottom: 20px;
+}
+
+.payments-header {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-weight: 400;
+    text-align: center;
+}
+
+.payments-quantity {
+    text-align: center;
+}
+
+/* Checkout.html - Specific Styles */
+.checkout-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #30303137;
+    border: transparent;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.291);
+}
+
+/* Register.hml - Specific Styles */
+.signin {
+    text-align: center;
+}
+
+.signin a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
+.signin a:hover {
+    color: #004078;
+    text-decoration: none;
+    border-bottom: 1px solid #004078;
+}
+
+/* Signin.html - Specific Styles */
+.forgot_password {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+}
+
+.forgot_password:hover {
+    color: #004078;
+    text-decoration: none;
+    border-bottom: 1px solid #004078;
+}
+
+.no_account {
+    text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    color: #000;
+}
+
+.register {
+    text-align: center;
+}
+
+.register a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
+.register a:hover {
+    color: #004078;
+    text-decoration: none;
+    border-bottom: 1px solid #004078;
+}
+
+/* Footer.html - Specific Styles */
+.footer {
+    font-family: "CormorantSC-Bold", "sans-serif";
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    padding: 5px 30px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/static/images/items/gold3.png");
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.contact-info {
+    display: block;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.footer-right i {
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+.footer-right i:hover {
+    color: #007bff;
+}
+
+/* Mobile Devices - Max-width 768px */
+@media (max-width: 768px) {
+
+    .home-product-title,
+    .home-product-price {
+        font-size: 14px;
+    }
+
+    /* Product_Detail.html */
+    .detail-img-container {
+        margin-top: 0;
+        padding: 20px;
+    }
+
+    .detail-form-container {
+        font-size: 14px;
+    }
+
+    .detail-review-header {
+        margin: 0px;
+        padding: 0px;
+        font-size: 20px;
+    }
+
+    .detail-review-container {
+        font-size: 12px;
+        margin-top: 10px;
+        padding: 0px 20px;
+    }
+
+    .detail-review-content {
+        margin:0;
+        padding:0;
+    }
+
+    /* Products.html */
+    .card-header {
+        font-size: 14px;
+    }
+
+    .arrow-down {
+        width: 12px;
+        height: 12px;
+    }
+
+    .list-menu {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    .border-header-container {
+        margin-top: 20px;
+    }
+
+    /* Dashboard_sidebar.html */
+    .list-group {
+        font-size: 16px;
+    }
+
+    /* Cart.html */
+    .cart-header {
+        font-size: 14px;
+    }
+
+    .dlist-align {
+        font-size: 14px;
+    }
+
+    /* Payments.html */
+    .card-body {
+        font-size: 12px;
+    }
+
+    .card-item {
+        padding: 0;
+    }
+
+    /* Basic Settings */
+    .header-1,
+    .header-center {
+        font-size: 20px;
+    }
+
+    .header-center {
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 3px;
+    }
+
+    .col-md-3 {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+
+    .card-width-400 {
+        width: 80%;
+    }
+
+    /* Footer */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        margin-bottom: 5px;
+    }
+}
+
+/* Tablet - "Min-width: 769px" and "Max-width: 1200px" */
+@media (min-width: 769px) and (max-width: 1200px) {
+
+
+    /* Product_detail.html */
+    .detail-review-header {
+        margin-top: 110px;
+        font-size: 26px;
+    }
+
+    .detail-review-container {
+        padding: 20px;
+    }
+
+    /* Products.html */
+    .card-header {
+        font-size: 16px;
+    }
+
+    .card-header-2 {
+        font-size: 16px;
+    }
+
+    .arrow-down {
+        width: 12px;
+        height: 12px;
+    }
+
+    .list-menu {
+        font-size: 16px;
+    }
+
+    /* Dashboard.sidebar.html */
+    .list-group {
+        font-size: 16px;
+    }
+
+    /* Dasbhoard.html */
+    .dash-orders {
+        font-size: 14px;
+    }
+
+    /* Cart.html */
+    .cart-header {
+        font-size: 16px;
+    }
+
+    /* Payments.html */
+    .card-body {
+        font-size: 14px;
+    }
+
+    .card-item {
+        padding: 0;
+    }
+
+    /* Basic Settings */
+    .header-1,
+    .header-center {
+        font-size: 24px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+}
+
+@media (min-width: 1201px) {
+    /* home.html */
+
+
+    /* Product_detail.html */
+    .detail-review-header {
+        margin-top: 110px;
+        font-size: 26px;
+    }
+
+    .detail-review-container {
+        padding: 10px;
+    }
+
+    /* Products.html */
+    .card-header {
+        font-size: 20px;
+    }
+
+    .arrow-down {
+        width: 20px;
+        height: 20px;
+    }
+
+    .list-menu {
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    /* Dashboard_sidebar.html */
+    .list-group {
+        font-size: 18px;
+    }
+
+    /* Dashboard.html */
+    .card-header-2 {
+        font-size: 20px;
+    }
+
+    /* Cart.html */
+    .cart-header {
+        font-size: 16px;
+    }
+
+    .card-text {
+        font-size: 14px;
+    }
+
+    .card-body {
+        font-size: 14px;
+    }
+
+    /* Basic Settings */
+    .header-1,
+    .header-center {
+        font-size: 32px;
+    }
+
+    .btn {
+        font-size: 16px;
+    }
+}
