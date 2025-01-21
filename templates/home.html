@@ -2,50 +2,35 @@
 {% load static %}
 
 {% block content %}
-    <!-- Banner Section -->
-    <section class="content-down">
-        <div class="container">
-            <h1 class="home-intro">Latest trends are here!</h1>
-        </div>
-    </section>
+    <div class="content-down"></div>
+    <div class="home-intro">Latest trends are here!</div>
 
     <!-- Popular Products Section -->
-    <section class="section-products">
-        <div class="container">
+    <section class="home-product-section">
 
-            <!-- Popular Products Section - Heading -->
-            <header class="section-heading">
-                <div class="header-1">Popular products</div>
-                <a href="{% url 'products' %}" class="btn">See all</a>
-            </header>
+        <!-- Popular Products Section - Heading -->
+        <header class="home-product-section-header">
+            <h1>Popular products</h1>
+            <a href="{% url 'products' %}" class="btn">See all</a>
+        </header>
 
-            <!-- Popular Products Section - Products  -->
-            <div class="product-row">
-                {% for product in products %}
-                <div class="col-md-3">
-                    <div class="card card-product-grid">
-                        <div class="frame">
-                        <a
-                            href="{{ product.get_url }}"
-                            class="img-wrap">
-                            <img src="{{ product.images.url }}">
+        <!-- Popular Products Section - Products  -->
+        <div class="home-product-row">
+            {% for product in products %}
+            <div class="col-md-3">
+                <div class="home-product-card">
+                    <a class="home-product-img-wrap" href="{{ product.get_url }}">
+                        <img class="home-product-img" src="{{ product.images.url }}">
+                    </a>
+                    <figcaption class="home-product-text-container">
+                        <a class="home-product-name" href="{{ product.get_url }}">
+                            {{ product.product_name }}
                         </a>
-                        </div>
-                        <figcaption class="info-wrap">
-                            <a
-                                href="{{ product.get_url }}"
-                                class="home-product-title">
-                                {{ product.product_name }}
-                            </a>
-                            <div
-                                class="home-product-price">$
-                                {{ product.price }}
-                            </div>
-                        </figcaption>
-                    </div>
+                        <div class="home-product-price">$ {{ product.price }}</div>
+                    </figcaption>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
