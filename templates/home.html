@@ -3,34 +3,30 @@
 
 {% block content %}
     <div class="content-down"></div>
-    <div class="home-intro">Latest trends are here!</div>
+        <div class="home-banner">Latest trends are here!</div>
 
-    <!-- Popular Products Section -->
-    <section class="home-product-section">
+    <div class="home-header_and_button-container">
+        <h2>Popular products</h2>
+        <a href="{% url 'products' %}" class="btn">See all</a>
+    </div>
 
-        <!-- Popular Products Section - Heading -->
-        <header class="home-product-section-header">
-            <h1>Popular products</h1>
-            <a href="{% url 'products' %}" class="btn">See all</a>
-        </header>
-
-        <!-- Popular Products Section - Products  -->
+    <div class="home-product-container">
         <div class="home-product-row">
             {% for product in products %}
-            <div class="col-md-3">
-                <div class="home-product-card">
-                    <a class="home-product-img-wrap" href="{{ product.get_url }}">
-                        <img class="home-product-img" src="{{ product.images.url }}">
-                    </a>
-                    <figcaption class="home-product-text-container">
-                        <a class="home-product-name" href="{{ product.get_url }}">
-                            {{ product.product_name }}
+                <div class="col-md-3">
+                    <div class="home-product-card">
+                        <a class="home-product-img-wrap" href="{{ product.get_url }}">
+                            <img class="home-product-img" src="{{ product.images.url }}">
                         </a>
-                        <div class="home-product-price">$ {{ product.price }}</div>
-                    </figcaption>
+                        <figcaption class="home-card-text-container">
+                            <a class="card-product-name" href="{{ product.get_url }}">
+                                {{ product.product_name }}
+                            </a>
+                            <div class="card-product-price">$ {{ product.price }}</div>
+                        </figcaption>
+                    </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
-    </section>
+    </div>
 {% endblock %}

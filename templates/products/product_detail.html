@@ -9,28 +9,28 @@
             <div class="row">
 
                 <!-- Image Section -->
-                <div class="col-md-6 mb-5">
-                    <div class="detail-img-container">
-                        <img src="{{ single_product.images.url }}" alt="Product Image" class="detail-img">
+                <div class="col-md-6">
+                    <div class="detail-container">
+                        <img class="detail-img" src="{{ single_product.images.url }}" alt="Product Image" >
                     </div>
                 </div>
 
                 <!-- Product Details Section -->
-                <div class="col-md-6 mb-5">
-                    <div class="detail-form-container">
+                <div class="col-md-6">
+                    <div class="detail-container">
                         <form action="{% url 'add_cart' single_product.id %}" method="POST">
                             {% csrf_token %}
                             <article>
-                                <div class="header-1">{{ single_product.product_name }}</div>
-                                <var class="detail-form-price">$ {{ single_product.price }}</var>
-                                <div class="detail-form-text-container">
-                                    <div class="detail-form-text">{{ single_product.description }}</div>
+                                <h2>{{ single_product.product_name }}</h2>
+                                <h3>${{ single_product.price }}</h3>
+                                <div class="detail-text-container">
+                                    <div class="">{{ single_product.description }}</div>
                                 </div>
 
                                 <!-- Color Select -->
-                                <div class="detail-form-group-container">Choose Color:
-                                    <select name="color" class="detail-form-select form-control" required>
-                                        <option value="" disabled selected>Select</option>
+                                <div>Choose Color:
+                                    <select name="color" class="detail-selection form-control" required>
+                                        <option value="grey-text" disabled selected>Color Required</option>
                                         {% for variation in single_product.variation_set.colors %}
                                             <option value="{{ variation.variation_value }}">
                                                 {{ variation.variation_value }}
@@ -39,10 +39,10 @@
                                     </select>
                                 </div>
 
-                                <!-- Size Select -->
-                                <div class="detail-form-group-container">Select Size:
-                                    <select name="size" class="detail-form-select form-control">
-                                        <option value="" disabled selected>Select</option>
+                                <!-- Choose Size -->
+                                <div>Choose Size:
+                                    <select name="size" class="detail-selection form-control" required>
+                                        <option value="grey-text" disabled selected>Size Requried</option>
                                         {% for variation in single_product.variation_set.sizes %}
                                             <option value="{{ variation.variation_value }}">
                                                 {{ variation.variation_value }}
