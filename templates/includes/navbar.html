@@ -9,37 +9,34 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
 
-                <!-- Navbar Brand -->
-                <div class="nav-item">
-                    <a class="navbar-brand" href="{% url 'home' %}">I shop</a>
-                </div>
+                <!-- NAVBAR BRAND -->
+                <a class="navbar-brand "href="{% url 'home' %}">Ishop</a>
 
-                <!-- Search Form -->
-                <div class="nav-item">
-                    <form class="search-form" action="{% url 'search' %}" method="GET">
-                        <input class="search-input" type="text" name="keyword">
-                        <button class="btn-search" type="submit" aria-label="Search Button">
-                            <div class="icon-search" aria-label="Search Icon"></div>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Toggler -->
-                <div class="nav-item">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="icon-toggler"></i>
+                <!-- NAVBAR SEARCH-FORM -->
+                <form class="d-flex" role="search">
+                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn-search" type="submit">
+                        <div class="icon-search" aria-label="Search Icon"></div>
                     </button>
-                </div>
+                </form>
 
-                <!-- Navbar Content -->
+                <!-- NAVBAR TOGGLER -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="navbar-toggler-icon">
+                        <span class="bar bar-1"></span>
+                        <span class="bar bar-2"></span>
+                        <span class="bar bar-3"></span>
+                    </div>
+                </button>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
 
-                        <!-- Categories Dropdown -->
-                        <li class="category-wrap dropdown d-inline-block">
-                            <a class="nav-link dropdown-toggle" href="#" id="CategoriesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Categories
-                            </a>
+                    <!-- Push left -->
+                    <ul class="navbar-nav me-auto ms-md-3 ms-lg-3">
+
+                        <!-- NAV-LINK 'CATEGORIES' DROPDOWN-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="CategoriesDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                             <div class="dropdown-menu">
                                 {% for category in links %}
                                     <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
@@ -47,38 +44,34 @@
                             </div>
                         </li>
 
-                        <!-- All Products Link -->
+                        <!-- NAV-LINK 'ALL PRODUCTS' -->
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'products' %}">All Products</a>
                         </li>
                     </ul>
 
-                    <!-- ACCOUNT -->
-                    <div class="right-items">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="AccountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Account
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="AccountDropdown">
-                                    {% if user.id is None %}
-                                        <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
-                                    {% else %}
-                                        <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'signout' %}">Logout</a></li>
-                                    {% endif %}
-                                </ul>
-                            </li>
-
-                            <!-- CART -->
-                            <li class="cart-container">
-                                <a class="icon-cart" id"IconCart" href="{% url 'cart' %}">
-                                    <span class="notify">{{ cart_count|default:"0" }}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Push Right -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- NAV-LINK 'ACCOUNT' DROPDOWN -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="AccountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                            <ul class="dropdown-menu" aria-labelledby="AccountDropdown">
+                                {% if user.id is None %}
+                                    <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'signout' %}">Logout</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        <!-- NAV-LINK 'CART' -->
+                        <li class="cart-container">
+                            <a class="icon-cart" id="IconCart" href="{% url 'cart' %}">
+                                <span class="notify">{{ cart_count|default:"0" }}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>

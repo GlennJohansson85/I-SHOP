@@ -4,7 +4,7 @@
 {% block title %} Product Details {% endblock %}
 
 {% block content %}
-    <section class="content-down">
+    <section>
          <div class="detail-container">
             <div class="row">
 
@@ -30,7 +30,7 @@
                                 <!-- Color Select -->
                                 <div>Choose Color:
                                     <select name="color" class="detail-selection form-control" required>
-                                        <option value="grey-text" disabled selected>Color Required</option>
+                                        <option value="grey-text" disabled selected>Click here</option>
                                         {% for variation in single_product.variation_set.colors %}
                                             <option value="{{ variation.variation_value }}">
                                                 {{ variation.variation_value }}
@@ -42,7 +42,7 @@
                                 <!-- Choose Size -->
                                 <div>Choose Size:
                                     <select name="size" class="detail-selection form-control" required>
-                                        <option value="grey-text" disabled selected>Size Requried</option>
+                                        <option value="grey-text" disabled selected>Click here</option>
                                         {% for variation in single_product.variation_set.sizes %}
                                             <option value="{{ variation.variation_value }}">
                                                 {{ variation.variation_value }}
@@ -69,10 +69,10 @@
     </section>
 
     <!-- Customer Reviews Section -->
-    <section>
+    <section class="detail-review-section">
        <div class="detail-container">
             <div class="row">
-            <header class="detail-review-header">Customer Reviews</header>
+            <header class="detail-review-header"><h5>Customer Reviews</h5></header>
 
                 <!-- Mark Review -->
                 <div class="col-md-6 mb-5">
