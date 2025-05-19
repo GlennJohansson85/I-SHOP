@@ -14,7 +14,7 @@ from django.core.mail import EmailMessage
 
 from cart.views import _cart_id
 from cart.models import Cart, CartItem
-import requests
+
 
 
 def register(request):
