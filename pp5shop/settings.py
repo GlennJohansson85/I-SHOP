@@ -105,24 +105,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS S3 configuration for production
-#if 'USE_AWS' in os.environ:
 
-    # AWS S3 Configuration
-#    AWS_STORAGE_BUCKET_NAME = ''
-#    AWS_S3_REGION_NAME = 'eu-north-1'
-#    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY', '')
-#    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
-#    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-
-#    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-
-
-#    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
